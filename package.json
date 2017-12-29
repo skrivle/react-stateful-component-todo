@@ -5,15 +5,19 @@
     "dependencies": {
         "flow-bin": "^0.60.1",
         "lint-staged": "^6.0.0",
+        "prettier": "^1.9.2",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
+        "react-router-dom": "^4.2.2",
         "react-scripts": "1.0.17",
-        "react-stateful-component": "^0.0.9"
+        "react-stateful-component": "^0.0.9",
+        "todomvc-app-css": "^2.1.0",
+        "uuid": "^3.1.0"
     },
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "react-scripts test --env=jsdom",
+        "test": "flow check && react-scripts test --env=jsdom",
         "eject": "react-scripts eject",
         "precommit": "lint-staged"
     },
