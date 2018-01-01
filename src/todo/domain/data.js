@@ -1,19 +1,21 @@
 // @flow
 
-export type Todo = {
+export type Todo = {|
     id: string,
     isCompleted: boolean,
     value: string
-};
+|};
 
 export type State = {
     todos: Array<Todo>,
-    newTodoInput: string
+    newTodoInput: string,
+    editTodoId: ?string
 };
 
 export const initialState: State = {
     todos: [],
-    newTodoInput: ''
+    newTodoInput: '',
+    editTodoId: null
 };
 
 export type Filter = 'all' | 'active' | 'completed';

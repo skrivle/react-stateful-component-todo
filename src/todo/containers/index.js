@@ -27,6 +27,10 @@ const TodoApp: ComponentType<Props> = createStatefulComponent(() => ({
                     key={todo.id}
                     id={todo.id}
                     value={todo.value}
+                    isEditting={selectors.isEditing(state, todo.id)}
+                    onEditRequest={id => reduce(actions.requestEdit(id))}
+                    onSubmit={(id, value) => reduce(actions.updateTodoValue(id, value))}
+                    onCancel={id => reduce(actions.discardEdit())}
                     isCompleted={todo.isCompleted}
                     onToggle={id => reduce(actions.toggleTodo(id))}
                     onRemove={id => reduce(actions.removeTodo(id))}

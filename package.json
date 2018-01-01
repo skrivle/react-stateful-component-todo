@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
+        "classnames": "^2.2.5",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
         "react-router-dom": "^4.2.2",
@@ -18,7 +19,10 @@
         "precommit": "lint-staged"
     },
     "lint-staged": {
-        "**/*.js": ["prettier --write", "git add"]
+        "**/*.js": [
+            "prettier --write",
+            "git add"
+        ]
     },
     "devDependencies": {
         "flow-bin": "^0.60.1",

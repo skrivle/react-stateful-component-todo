@@ -22,6 +22,12 @@ export default (state: State, action: Action): update.Update<State, Action> => {
             return toggleAllTodos(state, action);
         case 'CLEAR_COMPLETED_TODOS':
             return clearCompletedTodos(state, action);
+        case 'REQUEST_EDIT':
+            return requestEdit(state, action);
+        case 'DISCARD_EDIT':
+            return discardEdit(state, action);
+        case 'UPDATE_TODO_VALUE':
+            return updateTodoValue(state, action);
         default:
             return update.nothing();
     }
@@ -89,5 +95,32 @@ function clearCompletedTodos(state, action) {
     return update.state({
         ...state,
         todos: state.todos.filter(todo => !todo.isCompleted)
+    });
+}
+
+function requestEdit(state, action) {
+    return update.state({
+        ...state,
+        editTodoId: action.id
+    });
+}
+
+function discardEdit(state, action) {
+    return update.state({ ...state, editTodoId: null });
+}
+
+function updateTodoValue(state, action) {
+    return update.state({
+        ...state,
+        editTodoId: null,
+        todos: state.todos.map(
+            todo =>
+                todo.id === action.id
+                    ? {
+                          ...todo,
+                          value: action.value
+                      }
+                    : todo
+        )
     });
 }

@@ -22,3 +22,5 @@ export const filterTodos = ({ todos }: State, filter: string) => {
             return todos;
     }
 };
+
+export const isEditing = (state: State, id: string): boolean => state.editTodoId === id;
