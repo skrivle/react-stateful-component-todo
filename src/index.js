@@ -1,24 +1,35 @@
+// @flow
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { SideEffectProvider } from 'react-stateful-component';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import 'todomvc-app-css/index.css';
-import TodoApp from './todo';
+import TodoApp, { stringToFilter } from './todo';
 
 const TodoAppWithFilters = ({ match: { params }, history }) => {
-    const currentFilter: string = params.filter || 'all';
-    const filter = (filter: string): void => {
+    const currentFilter = params.filter || '';
+    const filter = filter => {
         if (filter === currentFilter) return;
         history.push({ pathname: filter });
     };
-    return <TodoApp filter={filter} currentFilter={currentFilter} />;
+    return <TodoApp filter={filter} currentFilter={stringToFilter(currentFilter)} />;
 };
 
-ReactDOM.render(
+const App = () => (
     <SideEffectProvider>
         <Router>
-            <Route path="/:filter?" component={TodoAppWithFilters} />
+            <Route path="/:filter?" render={TodoAppWithFilters} />
         </Router>
-    </SideEffectProvider>,
-    document.getElementById('root')
+    </SideEffectProvider>
 );
+
+const init = () => {
+    const root = document.getElementById('root');
+
+    if (!root) return;
+
+    ReactDOM.render(<App />, root);
+};
+
+init();

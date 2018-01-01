@@ -1,7 +1,7 @@
 // @flow
 
 import { update } from 'react-stateful-component';
-import { type State, type Todo } from './state';
+import { type State, type Todo } from './data';
 import { type Action } from './actions';
 import { allTodosCompleted } from './selectors';
 import { requestId } from './side-effects';

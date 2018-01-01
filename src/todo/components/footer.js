@@ -2,16 +2,23 @@
 
 import React from 'react';
 
-export type Props = {
+export type Props<F: string> = {
     count: number,
-    filters: Array<string>,
-    currentFilter: string,
+    filters: Array<F>,
+    currentFilter: F,
     showClearBtn: boolean,
     onClear: () => void,
-    onFilter: (filter: string) => void
+    onFilter: (filter: F) => void
 };
 
-const Footer = ({ count, showClearBtn, currentFilter, filters, onFilter, onClear }: Props) => (
+const Footer = <F: string>({
+    count,
+    showClearBtn,
+    currentFilter,
+    filters,
+    onFilter,
+    onClear
+}: Props<F>) => (
     <footer className="footer">
         <span className="todo-count">
             <strong>{count}</strong> items left

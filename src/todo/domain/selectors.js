@@ -1,6 +1,6 @@
 // @flow
 
-import { type State } from './state';
+import { type State } from './data';
 
 export const uncompletedTodos = ({ todos }: State): number =>
     todos.filter(todo => !todo.isCompleted).length;
