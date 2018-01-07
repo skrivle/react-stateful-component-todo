@@ -1,5 +1,7 @@
 // @flow
 
+import type { Todo } from './data';
+
 export type NewTodoInputAction = {
     type: 'UPDATE_NEW_TODO_INPUT',
     value: string
@@ -47,6 +49,15 @@ export type UpdateTodoValueAction = {
     value: string
 };
 
+export type TodosRequestedAction = {
+    type: 'TODOS_REQUESTED'
+};
+
+export type TodosReceivedAction = {
+    type: 'TODOS_RECEIVED',
+    todos: Array<Todo>
+};
+
 export type Action =
     | NewTodoInputAction
     | SubmitNewTodoAction
@@ -57,7 +68,9 @@ export type Action =
     | ClearCompletedTodosAction
     | RequestEditAction
     | DiscardEditAction
-    | UpdateTodoValueAction;
+    | UpdateTodoValueAction
+    | TodosRequestedAction
+    | TodosReceivedAction;
 
 export const newTodoInput = (value: string): NewTodoInputAction => ({
     type: 'UPDATE_NEW_TODO_INPUT',
@@ -98,4 +111,11 @@ export const updateTodoValue = (id: string, value: string): UpdateTodoValueActio
     type: 'UPDATE_TODO_VALUE',
     id,
     value
+});
+
+export const requestTodos = (): TodosRequestedAction => ({ type: 'TODOS_REQUESTED' });
+
+export const todosReceived = (todos: Array<Todo>): TodosReceivedAction => ({
+    type: 'TODOS_RECEIVED',
+    todos
 });

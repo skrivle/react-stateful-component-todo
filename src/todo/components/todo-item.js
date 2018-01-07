@@ -73,7 +73,7 @@ const TodoItem = ({
 export default TodoItem;
 
 function moveCaretToEnd(e) {
-    const temp_value = e.target.value;
+    const temp = e.target.value;
     e.target.value = '';
-    e.target.value = temp_value;
+    e.target.value = temp;
 }

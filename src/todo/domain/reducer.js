@@ -1,12 +1,28 @@
 // @flow
 
 import { update } from 'react-stateful-component';
+import { combineSideEffects } from '../utils/index';
 import { type State, type Todo } from './data';
 import { type Action } from './actions';
 import { allTodosCompleted } from './selectors';
-import { requestId } from './side-effects';
+import { requestId, persistTodos, getTodos } from './side-effects';
 
 export default (state: State, action: Action): update.Update<State, Action> => {
+    const result = reducer(state, action);
+
+    const stateUpdate = update.getState(result);
+    const sideEffectUpdate = update.getSideEffect(result);
+
+    if (!stateUpdate) return result;
+
+    const sideEffect = combineSideEffects(
+        ...[persistTodos(stateUpdate.todos), ...(sideEffectUpdate ? [sideEffectUpdate] : [])]
+    );
+
+    return update.stateAndSideEffect(stateUpdate, sideEffect);
+};
+
+function reducer(state: State, action: Action): update.Update<State, Action> {
     switch (action.type) {
         case 'UPDATE_NEW_TODO_INPUT':
             return updateNewTodoInput(state, action);
@@ -28,10 +44,17 @@ export default (state: State, action: Action): update.Update<State, Action> => {
             return discardEdit(state, action);
         case 'UPDATE_TODO_VALUE':
             return updateTodoValue(state, action);
+        case 'TODOS_REQUESTED':
+            return update.sideEffect(getTodos);
+        case 'TODOS_RECEIVED':
+            return update.state({
+                ...state,
+                todos: action.todos
+            });
         default:
             return update.nothing();
     }
-};
+}
 
 function updateNewTodoInput(state, action) {
     return update.state({ ...state, newTodoInput: action.value });

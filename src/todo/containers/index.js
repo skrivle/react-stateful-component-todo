@@ -19,6 +19,9 @@ const TodoApp: ComponentType<Props> = createStatefulComponent(() => ({
     displayName: 'TodoApp',
     initialState: () => initialState,
     reducer,
+    didMount: ({ reduce }) => {
+        reduce(actions.requestTodos());
+    },
     render: ({ state, reduce, props }) => {
         const todos = selectors
             .filterTodos(state, props.currentFilter)

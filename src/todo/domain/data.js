@@ -1,10 +1,18 @@
 // @flow
 
+import { objectExact, string, boolean } from 'flow-validator';
+
 export type Todo = {|
     id: string,
     isCompleted: boolean,
     value: string
 |};
+
+export const TodoSchema = objectExact({
+    id: string,
+    isCompleted: boolean,
+    value: string
+});
 
 export type State = {
     todos: Array<Todo>,
