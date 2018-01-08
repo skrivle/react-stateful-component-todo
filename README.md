@@ -3,4 +3,4 @@
 Example project for [React Stateful Component](https://github.com/vejersele/react-stateful-component).
 Build using create-react-app.
 
-work in progress.
+### >> [Demo](https://vejersele.github.io/react-stateful-component-todo/)

@@ -2,9 +2,11 @@
     "name": "react-stateful-component-example",
     "version": "0.1.0",
     "private": true,
+    "homepage": "https://vejersele.github.io/react-stateful-component-todo",
     "dependencies": {
         "classnames": "^2.2.5",
         "flow-validator": "^0.6.2",
+        "gh-pages": "^1.1.0",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
         "react-router-dom": "^4.2.2",
@@ -17,13 +19,12 @@
         "build": "react-scripts build",
         "test": "flow check && react-scripts test --env=jsdom",
         "eject": "react-scripts eject",
-        "precommit": "lint-staged"
+        "precommit": "lint-staged",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build"
     },
     "lint-staged": {
-        "**/*.js": [
-            "prettier --write",
-            "git add"
-        ]
+        "**/*.js": ["prettier --write", "git add"]
     },
     "devDependencies": {
         "flow-bin": "^0.60.1",
