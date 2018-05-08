@@ -7,10 +7,10 @@
         "classnames": "^2.2.5",
         "flow-validator": "^0.6.2",
         "gh-pages": "^1.1.0",
-        "react": "^16.2.0",
-        "react-dom": "^16.2.0",
+        "react": "^16.3.2",
+        "react-dom": "^16.3.2",
         "react-router-dom": "^4.2.2",
-        "react-stateful-component": "^0.0.9",
+        "react-stateful-component": "^2.0.0",
         "todomvc-app-css": "^2.1.0",
         "uuid": "^3.1.0"
     },
@@ -24,7 +24,10 @@
         "deploy": "gh-pages -d build"
     },
     "lint-staged": {
-        "**/*.js": ["prettier --write", "git add"]
+        "**/*.js": [
+            "prettier --write",
+            "git add"
+        ]
     },
     "devDependencies": {
         "flow-bin": "^0.60.1",
